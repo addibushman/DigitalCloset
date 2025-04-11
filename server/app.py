@@ -111,5 +111,18 @@ def outfits():
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
+
+@app.route('/api/outfits/<int:outfit_id>', methods=['DELETE'])
+def delete_outfit(outfit_id):
+    try:
+        with sqlite3.connect(DB) as conn:
+            c = conn.cursor()
+            c.execute('DELETE FROM outfits WHERE id = ?', (outfit_id,))
+            conn.commit()
+        return jsonify({'success': True})
+    except Exception as e:
+        print("OUTFIT DELETE ERROR 🚨:", e)
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(port=4000)

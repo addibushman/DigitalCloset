@@ -1,3 +1,4 @@
+// File: client/src/pages/Upload.jsx
 import React, { useState } from 'react';
 
 export default function Upload() {
@@ -8,11 +9,8 @@ export default function Upload() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Log selected file for debugging
-    console.log('File:', file);
-
     const formData = new FormData();
-    formData.append('image', file);          
+    formData.append('image', file);
     formData.append('category', category);
     formData.append('color', color);
 
@@ -29,7 +27,7 @@ export default function Upload() {
         setColor('');
       } else {
         const error = await res.json();
-        alert('Upload failed. Reason: ' + error.error); // More helpful error
+        alert('Upload failed. Reason: ' + error.error);
         console.error('Upload failed:', error);
       }
     } catch (err) {
@@ -58,14 +56,8 @@ export default function Upload() {
           <option value="dress">Dress</option>
           <option value="top">Top</option>
           <option value="bottom">Bottom</option>
+          <option value="shoes">Shoes</option>
         </select>
-        {/* <input
-          type="text"
-          placeholder="Color"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-          required
-        /> */}
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           Upload
         </button>
@@ -73,3 +65,4 @@ export default function Upload() {
     </div>
   );
 }
+
