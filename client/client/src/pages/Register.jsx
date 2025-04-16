@@ -25,15 +25,16 @@ export default function Register() {
   };
 
   return (
-    <div className="text-white text-center">
-      <h2 className="mb-4">Register</h2>
-      <form onSubmit={handleRegister} className="d-flex flex-column align-items-center gap-2">
+    <div className="text-white d-flex justify-content-center align-items-center vh-100 bg-pink-500">
+      <form onSubmit={handleRegister} className="w-75 bg-dark p-4 rounded" style={{ maxWidth: '400px' }}>
+        <h2 className="mb-4 text-center">Register</h2>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
           required
+          className="form-control mb-3"
         />
         <input
           type="password"
@@ -41,8 +42,11 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
+          className="form-control mb-4"
         />
-        <button type="submit" className="btn btn-primary">Register</button>
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn btn-success">Register</button>
+        </div>
       </form>
     </div>
   );

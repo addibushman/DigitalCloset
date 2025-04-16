@@ -1,4 +1,3 @@
-// File: src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,23 +16,28 @@ export default function Login({ setIsAuthenticated }) {
     });
 
     if (res.ok) {
-      localStorage.setItem('user', username);
-      setIsAuthenticated(true);     // ✅ update state
+      const data = await res.json();
+      localStorage.setItem('user', JSON.stringify({ id: data.user_id, username }));
+      setIsAuthenticated(true);
       alert('Login successful!');
-      navigate('/');                // ✅ go home
+      navigate('/');
     } else {
       alert('Login failed.');
     }
   };
 
   return (
-    <div className="text-white d-flex justify-content-center align-items-center vh-100">
-      <form onSubmit={handleLogin} className="w-50 bg-dark p-4 rounded">
-        <h2 className="mb-3">Login</h2>
+    <div className="text-white d-flex justify-content-center align-items-center vh-100 bg-pink-500">
+      <form
+        onSubmit={handleLogin}
+        className="w-75 bg-dark p-4 rounded"
+        style={{ maxWidth: '400px' }}
+      >
+        <h2 className="mb-4 text-center">Login</h2>
         <input
           type="text"
           placeholder="Username"
-          className="form-control mb-2"
+          className="form-control mb-3"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -46,8 +50,13 @@ export default function Login({ setIsAuthenticated }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit" className="btn btn-success">Login</button>
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn btn-success w-100">
+            Login
+          </button>
+        </div>
       </form>
     </div>
   );
 }
+

@@ -65,7 +65,7 @@ export default function MixAndMatch() {
         <select
           value={mode}
           onChange={(e) => setMode(e.target.value)}
-          className="text-black p-2 rounded"
+          className="text-white p-2 rounded"
         >
           <option value="top-bottom">Top + Bottom + Shoes</option>
           <option value="dress">Dress + Shoes</option>
@@ -117,7 +117,7 @@ export default function MixAndMatch() {
         placeholder="Name your outfit"
         value={outfitName}
         onChange={(e) => setOutfitName(e.target.value)}
-        className="mb-4 px-3 py-2 rounded border border-gray-300 text-black"
+        className="mb-4 px-3 py-2 rounded border border-gray-300 text-white"
       />
 
       <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 rounded">
